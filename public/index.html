@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple full-stack blog platform with comments.">
+  <title>BlogSpace — Share your ideas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">B</span> BlogSpace</a>
+    <div class="top-actions">
+      <span id="welcome" class="welcome"></span>
+      <button id="loginOpen" class="btn btn-ghost">Log in</button>
+      <button id="registerOpen" class="btn btn-primary">Create account</button>
+      <button id="logoutBtn" class="btn btn-ghost hidden">Log out</button>
+    </div>
+  </header>
+  <main class="layout">
+    <section class="hero">
+      <p class="eyebrow">YOUR SPACE ON THE INTERNET</p>
+      <h1>Ideas are better<br><span>when shared.</span></h1>
+      <p class="hero-copy">Write a story, share what you are learning, and join the conversation.</p>
+      <button id="writeOpen" class="btn btn-primary btn-large">＋ Write a post</button>
+    </section>
+    <section class="feed-section">
+      <div class="feed-heading"><div><p class="eyebrow">THE COMMUNITY</p><h2>Latest stories</h2></div><button id="refreshBtn" class="btn btn-ghost">↻ Refresh</button></div>
+      <div id="message" role="status" class="message hidden"></div>
+      <div id="posts" class="posts"><div class="loading">Loading stories…</div></div>
+    </section>
+  </main>
+
+  <dialog id="authDialog" class="dialog">
+    <button class="dialog-close" data-close="authDialog" aria-label="Close">×</button>
+    <p class="eyebrow" id="authEyebrow">WELCOME BACK</p><h2 id="authTitle">Log in</h2>
+    <form id="authForm">
+      <label id="nameLabel" class="hidden">Name<input id="authName" autocomplete="name" maxlength="80"></label>
+      <label>Email<input id="authEmail" type="email" autocomplete="email" required></label>
+      <label>Password<input id="authPassword" type="password" minlength="6" autocomplete="current-password" required></label>
+      <p id="authError" class="form-error"></p>
+      <button id="authSubmit" class="btn btn-primary btn-full" type="submit">Log in</button>
+    </form>
+    <p class="switch-auth"><span id="switchText">New here?</span> <button id="switchAuth" class="link-button">Create an account</button></p>
+  </dialog>
+
+  <dialog id="postDialog" class="dialog dialog-wide">
+    <button class="dialog-close" data-close="postDialog" aria-label="Close">×</button>
+    <p class="eyebrow">YOUR STORY</p><h2 id="postDialogTitle">Write a post</h2>
+    <form id="postForm">
+      <label>Title<input id="postTitle" maxlength="160" required placeholder="Give your story a clear title"></label>
+      <label>Content<textarea id="postContent" rows="8" maxlength="20000" required placeholder="What would you like to share?"></textarea></label>
+      <p id="postError" class="form-error"></p>
+      <button class="btn btn-primary btn-full" type="submit">Publish post</button>
+    </form>
+  </dialog>
+
+  <template id="postTemplate">
+    <article class="post-card">
+      <div class="post-meta"><span class="avatar"></span><span class="author"></span><span class="dot">·</span><time></time></div>
+      <h3 class="post-title"></h3><p class="post-content"></p>
+      <div class="post-actions"><span class="comment-count"></span><div class="owner-actions hidden"><button class="text-button edit-post">Edit</button><button class="text-button danger delete-post">Delete</button></div></div>
+      <section class="comments-section"><h4>Conversation</h4><div class="comments-list"></div><form class="comment-form"><input class="comment-input" maxlength="1000" placeholder="Add a thoughtful comment…" aria-label="Write a comment"><button class="btn btn-dark" type="submit">Comment</button></form><p class="login-hint hidden">Log in to join the conversation.</p></section>
+    </article>
+  </template>
+  <script src="app.js"></script>
+</body>
+</html>
